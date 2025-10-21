@@ -1,11 +1,19 @@
-import React from 'react';
+import React, { use } from "react";
+import { AuthContext } from "../components/provider/AuthContext";
 
 const Register = () => {
-    const handleRegister = () => {
-
-    }
-    return (
-          <div className="hero bg-base-200 min-h-screen ">
+  const { signUpWithEmailAndPassFunc } = use(AuthContext);
+  const handleRegister = (e) => {
+    e.preventDefault();
+    const email = e.target.email.value;
+    const password = e.target.password.value;
+    console.log(email, password);
+    signUpWithEmailAndPassFunc(email, password)
+      .then((res) => console.log(res.user))
+      .catch((error) => console.log(error.message));
+  };
+  return (
+    <div className="hero bg-base-200 min-h-screen ">
       <div className="hero-content flex-col lg:flex-row-reverse">
         <div className="card bg-base-100 max-w-sm shrink-0 shadow-2xl">
           <div className="card-body w-full md:w-[400px]">
@@ -13,27 +21,32 @@ const Register = () => {
             <form action="" onSubmit={handleRegister}>
               <fieldset className="fieldset">
                 <label className="label">Name</label>
-                <input type="text"  className="input" placeholder="Name" />
+                <input type="text" className="input" placeholder="Name" />
                 <label className="label">Photo</label>
-                <input type="photo" className="input" placeholder="Photo Url" />
+                <input type="text" className="input" placeholder="Photo Url" />
                 <label className="label">Email</label>
-                <input type="email" className="input" placeholder="Email" />
+                <input
+                  name="email"
+                  type="email"
+                  className="input"
+                  placeholder="Email"
+                />
                 <label className="label">Password</label>
                 <input
+                  name="password"
                   type="password"
                   className="input"
                   placeholder="Password"
                 />
-                <div>
-                </div>
-                <button className="btn btn-neutral mt-4">Login</button>
+                <div></div>
+                <button className="btn btn-neutral mt-4">Register</button>
               </fieldset>
             </form>
           </div>
         </div>
       </div>
     </div>
-    );
+  );
 };
 
 export default Register;
