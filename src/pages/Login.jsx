@@ -7,7 +7,7 @@ const Login = () => {
     const email = e.target.email.value;
     const password = e.target.password.value;
     console.log("User login info:", email, password);
-    // Add your Firebase or API login logic here
+
   };
 
   return (
