@@ -3,19 +3,12 @@ import logo from "../assets/image.png";
 import { Link, NavLink } from "react-router";
 import { AuthContext } from "../provider/AuthContext";
 import { toast } from "react-toastify";
-import userIcon from "../assets/icons8-user-48.png";
+import userIcon from "../assets/icons8-user-48.png"
 // import Spinner from "../pages/Spinner";
 const Navbar = () => {
   const { user, signoutUserFunc, setUser } = use(AuthContext);
   console.log(user);
   console.log(user?.displayName);
-  // console.log(photoURL)
-  // console.log(user.displayName);
-  // console.log(user.photoURL)
-  // // console.log(user.photoURL);
-  // console.log(user.reloadUserInfo.photoUrl);
-  // console.log(user.displayName, user.photoURL)
-
   const handleLogout = () => {
     signoutUserFunc()
       .then(() => {
@@ -28,7 +21,7 @@ const Navbar = () => {
   };
   console.log(user);
   return (
-    <div className="navbar bg-base-300 shadow-sm">
+    <div className="navbar  w-11/12 mx-auto">
       <div>
         <img src="" alt="" />
       </div>
@@ -53,17 +46,17 @@ const Navbar = () => {
           </div>
           <ul
             tabIndex="-1"
-            className="menu menu-sm dropdown-content bg-base-100 rounded-box z-1 mt-3 w-52 p-2 shadow"
+            className="menu menu-sm dropdown-content bg-base-100 rounded-box z-2 mt-3 w-52 p-2 shadow"
           >
             <NavLink to="/">
               <li>Home</li>
             </NavLink>
-            <li>
-              <a>Services</a>
-            </li>
-            <li>
-              <NavLink to="/profile">profile</NavLink>
-            </li>
+            <NavLink to="">
+              <li>Services</li>
+            </NavLink>
+            <NavLink to="/profile">
+              <li>Profile</li>
+            </NavLink>
           </ul>
         </div>
         <a className="btn btn-ghost text-xl">
@@ -86,11 +79,11 @@ const Navbar = () => {
       </div>
       <div className="navbar-end">
         {user ? (
-          <div className="flex items-center justify-between gap-5">
+          <div className="flex items-center gap-5">
             <div className="dropdown dropdown-end dropdown-hover">
               <div tabIndex={0} role="button" className="avatar cursor-pointer">
                 <div className="w-10 rounded-full">
-                  <img src={user?.photoURL || userIcon} alt="User avatar" />
+                  <img src={`${user ? user?.photoURL: userIcon}`}  alt="User avatar" />
                 </div>
               </div>
               <ul

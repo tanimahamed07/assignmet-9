@@ -1,5 +1,6 @@
 import React from "react";
 import { useLoaderData, useParams } from "react-router";
+import { toast } from "react-toastify";
 
 const ServiceDetails = () => {
   const data = useLoaderData();
@@ -7,11 +8,13 @@ const ServiceDetails = () => {
   console.log(data, id);
   const serviceDetails = data.find((d) => d.serviceId == id);
   console.log(serviceDetails);
-  const handleSubmit = () => {
-    
-  }
+  const handleSubmit = (e) => {
+    e.preventDefault();
+    toast.success("Booking Successful");
+    e.target.reset();
+  };
   return (
-    <div className="max-w-11/12 mx-auto mt-10 bg-gradient-to-br from-blue-50 to-white p-6 rounded-2xl shadow-xl border border-blue-100">
+    <div className="max-w-11/12 mx-auto my-10 bg-base-200 p-6 rounded-2xl shadow-xl border border-blue-100">
       <img
         src={serviceDetails.image}
         alt={serviceDetails.serviceName}
@@ -40,19 +43,18 @@ const ServiceDetails = () => {
       <p className="text-2xl font-semibold text-green-600 mb-8">
         ${serviceDetails.price}
       </p>
-
-      {/* Book Form */}
       <form onSubmit={handleSubmit} className="space-y-4">
         <input
+          required
           type="text"
           placeholder="Your Name"
           className="input input-bordered w-full"
         />
         <input
+          required
           type="email"
           placeholder="Your Email"
           className="input input-bordered w-full"
-          // value={formData.email}
         />
         <button
           type="submit"

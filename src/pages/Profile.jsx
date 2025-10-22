@@ -1,8 +1,10 @@
 import React, { use } from "react";
 import { AuthContext } from "../provider/AuthContext";
 import userIcon from '../assets/icons8-user-48.png'
+import { Link } from "react-router";
 const Profile = () => {
     const {user} = use(AuthContext);
+    console.log(user)
   return (
     <div className="min-h-screen bg-base-200 flex items-center justify-center p-4">
       <div className="bg-base-100 shadow-lg rounded-xl p-6 w-full max-w-md text-center">
@@ -24,7 +26,7 @@ const Profile = () => {
         <p className="text-gray-500 mb-6">
           {user?.email || "No email provided"}
         </p>
-        <button className="btn btn-primary w-full">Update Profile</button>
+        <Link to='/profile-update'><button className="btn btn-primary w-full">Update Profile</button></Link>
       </div>
     </div>
   );

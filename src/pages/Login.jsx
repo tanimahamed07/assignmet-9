@@ -5,9 +5,10 @@ import { toast } from "react-toastify";
 import { FaEye, FaEyeSlash } from "react-icons/fa";
 
 const Login = () => {
-  const { signInWithEmailAndPasswordFunc, setUser, user, signInWithGoogle } =
+  const { signInWithEmailAndPasswordFunc, setUser, signInWithGoogle } =
     use(AuthContext);
   const location = useLocation();
+  
   const from = location.state || "/";
   const navigate = useNavigate();
   const [toggle, setToggle] = useState();
