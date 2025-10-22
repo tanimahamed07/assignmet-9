@@ -3,11 +3,12 @@ import logo from "../assets/image.png";
 import { Link, NavLink } from "react-router";
 import { AuthContext } from "../provider/AuthContext";
 import { toast } from "react-toastify";
-import Spinner from "../pages/Spinner";
+import userIcon from "../assets/icons8-user-48.png";
+// import Spinner from "../pages/Spinner";
 const Navbar = () => {
-  const { user, signoutUserFunc ,setUser} = use(AuthContext);
+  const { user, signoutUserFunc, setUser } = use(AuthContext);
   console.log(user);
-  // console.log(user.displayName)
+  console.log(user?.displayName);
   // console.log(photoURL)
   // console.log(user.displayName);
   // console.log(user.photoURL)
@@ -27,9 +28,10 @@ const Navbar = () => {
   };
   console.log(user);
   return (
-    
     <div className="navbar bg-base-300 shadow-sm">
-      <div><img src="" alt="" /></div>
+      <div>
+        <img src="" alt="" />
+      </div>
       <div className="navbar-start">
         <div className="dropdown">
           <div tabIndex={0} role="button" className="btn btn-ghost lg:hidden">
@@ -54,15 +56,13 @@ const Navbar = () => {
             className="menu menu-sm dropdown-content bg-base-100 rounded-box z-1 mt-3 w-52 p-2 shadow"
           >
             <NavLink to="/">
-              <li>
-                Home
-              </li>
+              <li>Home</li>
             </NavLink>
             <li>
               <a>Services</a>
             </li>
             <li>
-              <a>My Profile</a>
+              <NavLink to="/profile">profile</NavLink>
             </li>
           </ul>
         </div>
@@ -74,26 +74,34 @@ const Navbar = () => {
       <div className="navbar-center hidden lg:flex">
         <ul className="menu menu-horizontal gap-5 px-1">
           <NavLink to="/">
-            <li>
-              Home
-            </li>
+            <li>Home</li>
           </NavLink>
           <NavLink to="">
-            <li>
-              Services
-            </li>
+            <li>Services</li>
           </NavLink>
-          <NavLink to="/">
-            <li>
-              Profile
-            </li>
+          <NavLink to="/profile">
+            <li>Profile</li>
           </NavLink>
         </ul>
       </div>
       <div className="navbar-end">
-        {  user ? (
+        {user ? (
           <div className="flex items-center justify-between gap-5">
-            
+            <div className="dropdown dropdown-end dropdown-hover">
+              <div tabIndex={0} role="button" className="avatar cursor-pointer">
+                <div className="w-10 rounded-full">
+                  <img src={user?.photoURL || userIcon} alt="User avatar" />
+                </div>
+              </div>
+              <ul
+                tabIndex={0}
+                className="dropdown-content menu bg-base-100 rounded-box z-3 w-52 p-2 shadow-sm"
+              >
+                <li>
+                  <p>{user?.displayName || "Guest User"}</p>
+                </li>
+              </ul>
+            </div>
 
             <button onClick={handleLogout} className="btn btn-sm">
               Logout
@@ -101,7 +109,7 @@ const Navbar = () => {
           </div>
         ) : (
           <Link className="btn" to="/login">
-             Login
+            Login
           </Link>
         )}
       </div>

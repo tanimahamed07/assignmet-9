@@ -41,7 +41,7 @@ const Login = () => {
     <div className="hero bg-base-200 min-h-screen ">
       <div className="hero-content flex-col lg:flex-row-reverse">
         <div className="card bg-base-100 max-w-sm shrink-0 shadow-2xl">
-          <div className="card-body w-full md:w-[400px]">
+          <div className="card-body w-full">
             <h1 className="text-center text-2xl font-bold">Login</h1>
             <form action="" onSubmit={handleLogin}>
               <fieldset className="fieldset">
@@ -68,7 +68,7 @@ const Login = () => {
                   </span>
                 </div>
                 <div>
-                  <a className="link link-hover">Forgot password?</a>
+                  <Link to='/forget-password' className="link link-hover">Forgot password?</Link>
                 </div>
                 <button className="btn btn-neutral mt-4">Login</button>
                 {/* <!-- Google --> */}

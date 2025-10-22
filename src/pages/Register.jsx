@@ -1,20 +1,15 @@
 import React, { use, useState } from "react";
 // import { AuthContext } from "../provider/AuthContext";
-import { Link, useNavigate } from "react-router";
+import { Link } from "react-router";
 import { toast } from "react-toastify";
 import { FaEye, FaEyeSlash } from "react-icons/fa";
 import { AuthContext } from "../provider/AuthContext";
-import { auth } from "../firebase/firebase.config";
 
 const Register = () => {
   const [error, setError] = useState();
   const [toggle, setToggle] = useState();
-  const {
-    signUpWithEmailAndPassFunc,
-    updateProfileFunc,
-    setUser,
-  } = use(AuthContext);
-  const navigate = useNavigate();
+  const { signUpWithEmailAndPassFunc, updateProfileFunc, setUser } =
+    use(AuthContext);
   const handleRegister = (e) => {
     e.preventDefault();
     setError("");
@@ -34,9 +29,11 @@ const Register = () => {
     signUpWithEmailAndPassFunc(email, password)
       .then((res) => {
         const user = res.user;
-        updateProfileFunc({displayName: name, photoURL: photo})
+        updateProfileFunc({ displayName: name, photoURL: photo })
           .then(() => {
-            setUser({...user, displayName: name, photoURL: photo});
+            setUser((prev) => {
+              return { ...prev, displayName: name, photoURL: photo };
+            });
             toast.success("Register successful");
           })
           .catch((error) => {
@@ -50,7 +47,7 @@ const Register = () => {
     <div className="hero bg-base-200 min-h-screen ">
       <div className="hero-content flex-col lg:flex-row-reverse">
         <div className="card bg-base-100 max-w-sm shrink-0 shadow-2xl">
-          <div className="card-body w-full md:w-[400px]">
+          <div className="card-body w-full">
             <h1 className="text-center text-2xl font-bold">Register</h1>
             <form action="" onSubmit={handleRegister}>
               <fieldset className="fieldset">
@@ -85,19 +82,19 @@ const Register = () => {
                   </p>
                 )}
                 <div className="relative">
-                                  <input
-                                    name="password"
-                                    type={toggle ? "text" : "password"}
-                                    className="input"
-                                    placeholder="Password"
-                                  />
-                                  <span
-                                    className="absolute top-1/2 left-73 -translate-y-1/2 cursor-pointer text-gray-500"
-                                    onClick={() => setToggle(!toggle)}
-                                  >
-                                    {toggle ? <FaEyeSlash /> : <FaEye />}
-                                  </span>
-                                </div>
+                  <input
+                    name="password"
+                    type={toggle ? "text" : "password"}
+                    className="input"
+                    placeholder="Password"
+                  />
+                  <span
+                    className="absolute top-1/2 left-73 -translate-y-1/2 cursor-pointer text-gray-500"
+                    onClick={() => setToggle(!toggle)}
+                  >
+                    {toggle ? <FaEyeSlash /> : <FaEye />}
+                  </span>
+                </div>
                 <button className="btn btn-neutral mt-4">Register</button>
                 <p className="text-center text-sm mt-4">
                   Already have an account?
