@@ -4,6 +4,7 @@ import HomePage from "../pages/Home/HomePage";
 import ServiceDetails from "../pages/ServiceDetails";
 import Login from "../pages/Login";
 import Register from "../pages/Register";
+import PrivateRoutes from "./PrivateRoutes";
 
 export const router = createBrowserRouter([
   {
@@ -18,7 +19,7 @@ export const router = createBrowserRouter([
         {
             path: '/details/:id',
             loader: () => fetch('/care.json'),
-            element: <ServiceDetails></ServiceDetails>
+            element: <PrivateRoutes><ServiceDetails></ServiceDetails></PrivateRoutes>
         },
         {
             path: '/login',

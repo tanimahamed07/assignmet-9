@@ -1,12 +1,35 @@
 import React, { use } from "react";
 import logo from "../assets/image.png";
-import { Link } from "react-router";
+import { Link, NavLink } from "react-router";
 import { AuthContext } from "../provider/AuthContext";
+import { toast } from "react-toastify";
+import Spinner from "../pages/Spinner";
 const Navbar = () => {
-  const { user } = use(AuthContext);
+  const { user, signoutUserFunc ,setUser} = use(AuthContext);
+  console.log(user);
+  // console.log(user.displayName)
+  // console.log(photoURL)
+  // console.log(user.displayName);
+  // console.log(user.photoURL)
+  // // console.log(user.photoURL);
+  // console.log(user.reloadUserInfo.photoUrl);
+  // console.log(user.displayName, user.photoURL)
+
+  const handleLogout = () => {
+    signoutUserFunc()
+      .then(() => {
+        toast.success("Signout successful");
+        setUser(null);
+      })
+      .catch((e) => {
+        toast.error(e.message);
+      });
+  };
   console.log(user);
   return (
+    
     <div className="navbar bg-base-300 shadow-sm">
+      <div><img src="" alt="" /></div>
       <div className="navbar-start">
         <div className="dropdown">
           <div tabIndex={0} role="button" className="btn btn-ghost lg:hidden">
@@ -30,9 +53,11 @@ const Navbar = () => {
             tabIndex="-1"
             className="menu menu-sm dropdown-content bg-base-100 rounded-box z-1 mt-3 w-52 p-2 shadow"
           >
-            <li>
-              <a>Home</a>
-            </li>
+            <NavLink to="/">
+              <li>
+                Home
+              </li>
+            </NavLink>
             <li>
               <a>Services</a>
             </li>
@@ -47,45 +72,36 @@ const Navbar = () => {
         </a>
       </div>
       <div className="navbar-center hidden lg:flex">
-        <ul className="menu menu-horizontal px-1">
-          <li>
-            <a>Home</a>
-          </li>
-          <li>
-            <a>Services</a>
-          </li>
-          <li>
-            <a>My Profile</a>
-          </li>
+        <ul className="menu menu-horizontal gap-5 px-1">
+          <NavLink to="/">
+            <li>
+              Home
+            </li>
+          </NavLink>
+          <NavLink to="">
+            <li>
+              Services
+            </li>
+          </NavLink>
+          <NavLink to="/">
+            <li>
+              Profile
+            </li>
+          </NavLink>
         </ul>
       </div>
       <div className="navbar-end">
-        {user ? (
-          <div className="flex items-center gap-3">
-            <div className="">
-              <div className="dropdown dropdown-end">
-                <div tabIndex={0} role="button" className=" m-1 bg-transparent">
-                  <img
-                    src={user.photoURL || "https://i.ibb.co/Y3d0N5H/user.png"}
-                    alt=""
-                    className="w-10 h-10 rounded-full border border-gray-300 hover: cursor-pointer"
-                  />
-                </div>
-                <ul
-                  tabIndex="-1"
-                  className=" dropdown-content menu bg-base-100 rounded-box z-50 w-52 p-2 shadow-sm hidden group-hover:block"
-                >
-                  <li>
-                    <a>{user.displayName}</a>
-                  </li>
-                </ul>
-              </div>
-            </div>
-            <button className="btn btn-sm">Logout</button>
+        {  user ? (
+          <div className="flex items-center justify-between gap-5">
+            
+
+            <button onClick={handleLogout} className="btn btn-sm">
+              Logout
+            </button>
           </div>
         ) : (
-          <Link to="/login">
-            <a className="btn">Login</a>
+          <Link className="btn" to="/login">
+             Login
           </Link>
         )}
       </div>

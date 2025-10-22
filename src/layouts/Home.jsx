@@ -5,7 +5,6 @@ import Footer from "../components/Footer";
 import { ToastContainer } from "react-toastify";
 
 const Home = () => {
- 
   return (
     <div>
       <nav className="">

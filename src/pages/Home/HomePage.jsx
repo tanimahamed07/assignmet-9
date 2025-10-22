@@ -3,6 +3,7 @@ import HeroSlider from './HeroSlider';
 import ServicesSection from './ServicesSection';
 import TipsSection from './TipsSection';
 import VetsSection from './VetsSection';
+import CustomerReview from './CustomerReview';
 
 
 const HomePage = () => {
@@ -13,6 +14,7 @@ const HomePage = () => {
             <ServicesSection/>
             <TipsSection/>
             <VetsSection/>
+            <CustomerReview/>
         </div>
     );
 };

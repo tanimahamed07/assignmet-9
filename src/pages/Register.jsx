@@ -4,15 +4,22 @@ import { Link, useNavigate } from "react-router";
 import { toast } from "react-toastify";
 import { FaEye, FaEyeSlash } from "react-icons/fa";
 import { AuthContext } from "../provider/AuthContext";
+import { auth } from "../firebase/firebase.config";
 
 const Register = () => {
   const [error, setError] = useState();
   const [toggle, setToggle] = useState();
-  const { signUpWithEmailAndPassFunc , user, setUser} = use(AuthContext);
+  const {
+    signUpWithEmailAndPassFunc,
+    updateProfileFunc,
+    setUser,
+  } = use(AuthContext);
   const navigate = useNavigate();
   const handleRegister = (e) => {
     e.preventDefault();
     setError("");
+    const name = e.target.name?.value;
+    const photo = e.target.photo?.value;
     const email = e.target.email.value;
     const password = e.target.password.value;
     console.log(email, password);
@@ -26,9 +33,16 @@ const Register = () => {
     }
     signUpWithEmailAndPassFunc(email, password)
       .then((res) => {
-        setUser(res.user);
-        // console.log(user);
-        navigate("/");
+        const user = res.user;
+        updateProfileFunc({displayName: name, photoURL: photo})
+          .then(() => {
+            setUser({...user, displayName: name, photoURL: photo});
+            toast.success("Register successful");
+          })
+          .catch((error) => {
+            toast.error(error.message);
+            setUser(user);
+          });
       })
       .catch((error) => toast(error.message));
   };
@@ -41,9 +55,19 @@ const Register = () => {
             <form action="" onSubmit={handleRegister}>
               <fieldset className="fieldset">
                 <label className="label">Name</label>
-                <input type="text" className="input" placeholder="Name" />
+                <input
+                  name="name"
+                  type="text"
+                  className="input"
+                  placeholder="Name"
+                />
                 <label className="label">Photo</label>
-                <input type="text" className="input" placeholder="Photo Url" />
+                <input
+                  name="photo"
+                  type="text"
+                  className="input"
+                  placeholder="Photo Url"
+                />
                 <label className="label">Email</label>
 
                 <input
@@ -61,27 +85,27 @@ const Register = () => {
                   </p>
                 )}
                 <div className="relative">
-                  <input
-                    name="password"
-                    type={toggle ? "text" : "password"}
-                    className="input w-full pr-10"
-                    placeholder="Password"
-                  />
-                  <span
-                    className="absolute top-1/2 right-3 -translate-y-1/2 cursor-pointer text-gray-500"
-                    onClick={() => setToggle(!toggle)}
-                  >
-                    {toggle ? <FaEyeSlash /> : <FaEye />}
-                  </span>
-                </div>
+                                  <input
+                                    name="password"
+                                    type={toggle ? "text" : "password"}
+                                    className="input"
+                                    placeholder="Password"
+                                  />
+                                  <span
+                                    className="absolute top-1/2 left-73 -translate-y-1/2 cursor-pointer text-gray-500"
+                                    onClick={() => setToggle(!toggle)}
+                                  >
+                                    {toggle ? <FaEyeSlash /> : <FaEye />}
+                                  </span>
+                                </div>
                 <button className="btn btn-neutral mt-4">Register</button>
                 <p className="text-center text-sm mt-4">
                   Already have an account?
-                  <Link to="/login">
-                    <span className="text-blue-500 hover:underline font-semibold">
-                      {" "}
-                      Login here
-                    </span>
+                  <Link
+                    to="/login"
+                    className="text-blue-500 hover:underline font-semibold"
+                  >
+                    Login here
                   </Link>
                 </p>
               </fieldset>
