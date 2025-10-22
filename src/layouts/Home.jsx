@@ -2,7 +2,8 @@ import React from "react";
 import Navbar from "../components/Navbar";
 import { Outlet } from "react-router";
 import Footer from "../components/Footer";
-import { ToastContainer } from "react-toastify";
+// import { ToastContainer } from "react-toastify";
+import { Toaster } from "react-hot-toast";
 
 const Home = () => {
   return (
@@ -14,9 +15,9 @@ const Home = () => {
         <Outlet></Outlet>
       </main>
       <footer>
-        <Footer/>
+        <Footer />
       </footer>
-      <ToastContainer />
+      <Toaster position="top-center" reverseOrder={false} />
     </div>
   );
 };

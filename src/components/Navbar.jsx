@@ -2,8 +2,9 @@ import React, { use } from "react";
 import logo from "../assets/image.png";
 import { Link, NavLink } from "react-router";
 import { AuthContext } from "../provider/AuthContext";
-import { toast } from "react-toastify";
+
 import userIcon from "../assets/icons8-user-48.png"
+import toast from "react-hot-toast";
 // import Spinner from "../pages/Spinner";
 const Navbar = () => {
   const { user, signoutUserFunc, setUser } = use(AuthContext);
@@ -101,7 +102,7 @@ const Navbar = () => {
             </button>
           </div>
         ) : (
-          <Link className="btn" to="/login">
+          <Link className="btn bg-blue-600 text-white" to="/login">
             Login
           </Link>
         )}

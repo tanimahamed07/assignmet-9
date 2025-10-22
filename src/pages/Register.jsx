@@ -1,9 +1,10 @@
 import React, { use, useState } from "react";
 // import { AuthContext } from "../provider/AuthContext";
 import { Link, useNavigate } from "react-router";
-import { toast } from "react-toastify";
+import toast from "react-hot-toast";
 import { FaEye, FaEyeSlash } from "react-icons/fa";
 import { AuthContext } from "../provider/AuthContext";
+import "animate.css";
 
 const Register = () => {
   const [error, setError] = useState();
@@ -47,7 +48,7 @@ const Register = () => {
             setUser(user);
           });
       })
-      .catch((error) => toast(error.message));
+      .catch((error) => toast.error(error.message));
   };
   const handleGoogleLogin = () => {
     signInWithGoogle()
@@ -63,7 +64,7 @@ const Register = () => {
       <div className="hero-content flex-col lg:flex-row-reverse">
         <div className="card bg-base-100 max-w-sm shrink-0 shadow-2xl">
           <div className="card-body w-full">
-            <h1 className="text-center text-2xl font-bold">Register</h1>
+            <h1 className="animate__animated animate__bounce text-center text-2xl font-bold">Register</h1>
             <form action="" onSubmit={handleRegister}>
               <fieldset className="fieldset">
                 <label className="label">Name</label>

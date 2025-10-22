@@ -7,18 +7,27 @@ import "swiper/css";
 import "swiper/css/navigation";
 
 // import './styles.css';
-
+import "animate.css";
 // import required modules
-import { Navigation } from "swiper/modules";
+import { Autoplay, Navigation } from "swiper/modules";
 
 export default function App() {
   return (
     <>
-      <Swiper navigation={true} modules={[Navigation]} className="mySwiper">
+      <Swiper
+        navigation={true}
+        modules={[Navigation, Autoplay]}
+        autoplay={{
+          delay: 2000,
+          disableOnInteraction: true,
+        }}
+        loop={true}
+        className="mySwiper"
+      >
         <SwiperSlide>
           {" "}
           <div className="w-full h-[400px] flex flex-col items-center justify-center bg-orange-200 p-8">
-            <h2 className="text-5xl font-bold mb-4 text-white">
+            <h2 className="animate__animated animate__bounce text-5xl font-bold mb-4 text-white">
               Cozy Winter Paws
             </h2>
             <p className="text-lg text-gray-800">
@@ -28,8 +37,8 @@ export default function App() {
         </SwiperSlide>
         <SwiperSlide>
           {" "}
-          <div className="w-full h-[400px] flex flex-col items-center justify-center bg-blue-200 p-8">
-            <h2 className="text-5xl font-bold mb-4 text-white">
+          <div className=" w-full h-[400px] flex flex-col items-center justify-center bg-blue-200 p-8">
+            <h2 className="animate__animated animate__bounce text-5xl font-bold mb-4 text-white">
               Snuggle Up Time
             </h2>
             <p className="text-lg text-gray-800">
@@ -40,7 +49,7 @@ export default function App() {
         <SwiperSlide>
           {" "}
           <div className="w-full h-[400px] flex flex-col items-center justify-center bg-green-200 p-8">
-            <h2 className="text-5xl font-bold mb-4 text-white">
+            <h2 className="animate__animated animate__bounce text-5xl font-bold mb-4 text-white">
               Winter Adventures
             </h2>
             <p className="text-lg text-gray-800">

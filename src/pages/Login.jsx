@@ -1,14 +1,15 @@
 import React, { use, useState } from "react";
 import { Link, useLocation, useNavigate } from "react-router";
 import { AuthContext } from "../provider/AuthContext";
-import { toast } from "react-toastify";
-import { FaEye, FaEyeSlash } from "react-icons/fa";
 
+import { FaEye, FaEyeSlash } from "react-icons/fa";
+import toast from "react-hot-toast";
+import "animate.css";
 const Login = () => {
   const { signInWithEmailAndPasswordFunc, setUser, signInWithGoogle } =
     use(AuthContext);
   const location = useLocation();
-  
+
   const from = location.state || "/";
   const navigate = useNavigate();
   const [toggle, setToggle] = useState();
@@ -43,7 +44,9 @@ const Login = () => {
       <div className="hero-content flex-col lg:flex-row-reverse">
         <div className="card bg-base-100 max-w-sm shrink-0 shadow-2xl">
           <div className="card-body w-full">
-            <h1 className="text-center text-2xl font-bold">Login</h1>
+            <h1 className="animate__animated animate__bounce text-center text-2xl font-bold">
+              Login
+            </h1>
             <form action="" onSubmit={handleLogin}>
               <fieldset className="fieldset">
                 <label className="label">Email</label>
@@ -69,7 +72,9 @@ const Login = () => {
                   </span>
                 </div>
                 <div>
-                  <Link to='/forget-password' className="link link-hover">Forgot password?</Link>
+                  <Link to="/forget-password" className="link link-hover">
+                    Forgot password?
+                  </Link>
                 </div>
                 <button className="btn btn-neutral mt-4">Login</button>
                 {/* <!-- Google --> */}

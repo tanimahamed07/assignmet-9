@@ -1,7 +1,8 @@
 import React, { use } from "react";
 import { Link, useNavigate } from "react-router";
 import { AuthContext } from "../provider/AuthContext";
-import { toast } from "react-toastify";
+import toast from "react-hot-toast";
+
 
 const UpdateProfile = () => {
   const { updateProfileFunc, setUser } = use(AuthContext);
