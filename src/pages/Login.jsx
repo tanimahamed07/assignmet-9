@@ -6,16 +6,24 @@ import { FaEye, FaEyeSlash } from "react-icons/fa";
 import toast from "react-hot-toast";
 import "animate.css";
 const Login = () => {
-  const { signInWithEmailAndPasswordFunc, setUser, signInWithGoogle, setLoading , user} =
-    use(AuthContext);
+  const {
+    signInWithEmailAndPasswordFunc,
+    setUser,
+    signInWithGoogle,
+    setLoading,
+    user,
+    setControlledEmail,
+    controlledEmail,
+  } = use(AuthContext);
+  console.log(controlledEmail)
   const location = useLocation();
   const from = location.state || "/";
   const navigate = useNavigate();
-  if(user){
-    navigate('/')
+  if (user) {
+    navigate("/");
     return;
   }
-const [toggle, setToggle] = useState(false);
+  const [toggle, setToggle] = useState(false);
   const handleLogin = (e) => {
     e.preventDefault();
     const email = e.target.email.value;
@@ -23,7 +31,7 @@ const [toggle, setToggle] = useState(false);
 
     signInWithEmailAndPasswordFunc(email, password)
       .then((res) => {
-        setLoading(false)
+        setLoading(false);
         setUser(res.user);
         toast.success("Signin successful");
         navigate(from);
@@ -35,7 +43,7 @@ const [toggle, setToggle] = useState(false);
   const handleGoogleLogin = () => {
     signInWithGoogle()
       .then((res) => {
-        setLoading(false)
+        setLoading(false);
         setUser(res.user);
         toast.success("Signin successful");
         navigate(from);
@@ -56,6 +64,8 @@ const [toggle, setToggle] = useState(false);
                 <label className="label">Email</label>
                 <input
                   name="email"
+                  value={controlledEmail}
+                  onChange={(e) => setControlledEmail(e.target.value)}
                   type="email"
                   className="input"
                   placeholder="Email"

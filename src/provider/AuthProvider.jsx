@@ -13,6 +13,7 @@ import {
 } from "firebase/auth";
 
 const AuthProvider = ({ children }) => {
+  const [controlledEmail, setControlledEmail] = useState("");
   const [user, setUser] = useState(null);
   const [loading, setLoading] = useState(true);
   const googleProvider = new GoogleAuthProvider();
@@ -28,8 +29,8 @@ const AuthProvider = ({ children }) => {
     return signInWithEmailAndPassword(auth, email, password);
   };
   const forgetPasswordFunc = (email) => {
-    return sendPasswordResetEmail(auth, email)
-  }
+    return sendPasswordResetEmail(auth, email);
+  };
   const signInWithGoogle = () => {
     setLoading(true);
     return signInWithPopup(auth, googleProvider);
@@ -50,10 +51,11 @@ const AuthProvider = ({ children }) => {
     signInWithGoogle,
     user,
     setLoading,
+    controlledEmail,
+    setControlledEmail,
   };
   useEffect(() => {
     const unsubscribe = onAuthStateChanged(auth, (currUser) => {
-
       setUser(currUser);
       setLoading(false);
     });

@@ -4,7 +4,7 @@ import toast from "react-hot-toast";
 import { useNavigate } from "react-router";
 
 const ForgetPassword = () => {
-  const {forgetPasswordFunc} = useContext(AuthContext)
+  const {forgetPasswordFunc, controlledEmail} = useContext(AuthContext)
   const navigate = useNavigate()
   const handleReset = (e) => {
     const email = e.target.email.value
@@ -28,6 +28,7 @@ const ForgetPassword = () => {
           <form onSubmit={handleReset}>
             <label className="label">Email</label>
             <input
+              value={controlledEmail}
               type="email"
               name='email'
               className="input input-bordered w-full"
