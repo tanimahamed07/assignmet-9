@@ -11,11 +11,9 @@ const Login = () => {
     setUser,
     signInWithGoogle,
     setLoading,
-    user,
     setControlledEmail,
     controlledEmail,
   } = use(AuthContext);
-  console.log(controlledEmail)
   const location = useLocation();
   const from = location.state || "/";
   const navigate = useNavigate();
