@@ -28,7 +28,7 @@ const ForgetPassword = () => {
           <form onSubmit={handleReset}>
             <label className="label">Email</label>
             <input
-              value={controlledEmail}
+              defaultValue={controlledEmail}
               type="email"
               name='email'
               className="input input-bordered w-full"

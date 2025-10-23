@@ -57,7 +57,7 @@ const Navbar = () => {
         </div>
         <a className="btn btn-ghost text-xl">
           {" "}
-          <img className="w-[70px]" src={logo} alt="" /> Pet Care
+          <img className="w-[70px]" src={logo} alt="" /> <span  className="hidden md:block">Pet Care</span> 
         </a>
       </div>
       <div className="navbar-center hidden lg:flex">

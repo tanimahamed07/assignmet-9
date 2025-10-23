@@ -26,7 +26,7 @@ export default function App() {
       >
         <SwiperSlide>
           {" "}
-          <div className="w-full h-[400px] flex flex-col items-center justify-center bg-orange-200 p-8">
+          <div className="w-full h-[300px] md:h-[350px] flex flex-col items-center justify-center bg-orange-200 p-8">
             <h2 className="animate__animated animate__bounce text-5xl font-bold mb-4 text-white">
               Cozy Winter Paws
             </h2>
@@ -37,7 +37,7 @@ export default function App() {
         </SwiperSlide>
         <SwiperSlide>
           {" "}
-          <div className=" w-full h-[400px] flex flex-col items-center justify-center bg-blue-200 p-8">
+          <div className=" w-full  h-[300px] md:h-[350px] flex flex-col items-center justify-center bg-blue-200 p-8">
             <h2 className="animate__animated animate__bounce text-5xl font-bold mb-4 text-white">
               Snuggle Up Time
             </h2>
@@ -48,7 +48,7 @@ export default function App() {
         </SwiperSlide>
         <SwiperSlide>
           {" "}
-          <div className="w-full h-[400px] flex flex-col items-center justify-center bg-green-200 p-8">
+          <div className="w-full  h-[300px] md:h-[350px] flex flex-col items-center justify-center bg-green-200 p-8">
             <h2 className="animate__animated animate__bounce text-5xl font-bold mb-4 text-white">
               Winter Adventures
             </h2>
