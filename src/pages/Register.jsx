@@ -23,7 +23,7 @@ const Register = () => {
     const photo = e.target.photo?.value;
     const email = e.target.email.value;
     const password = e.target.password.value;
-    console.log(email, password);
+
     const passwordRegex = /^(?=.*[0-9]).{6,}$/;
 
     if (!passwordRegex.test(password)) {

@@ -5,7 +5,7 @@ import { Link } from "react-router";
 import "animate.css";
 const Profile = () => {
     const {user} = use(AuthContext);
-    console.log(user)
+
   return (
     <div className="min-h-screen bg-base-200 flex items-center justify-center p-4">
       <div className="bg-base-100 shadow-lg rounded-xl p-6 w-full max-w-md text-center">

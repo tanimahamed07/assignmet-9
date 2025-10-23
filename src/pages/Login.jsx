@@ -17,10 +17,10 @@ const Login = () => {
     e.preventDefault();
     const email = e.target.email.value;
     const password = e.target.password.value;
-    console.log("User login info:", email, password);
+
     signInWithEmailAndPasswordFunc(email, password)
       .then((res) => {
-        console.log(res.user);
+
         setUser(res.user);
         toast.success("Signin successful");
         navigate(from);

@@ -9,47 +9,60 @@ import Profile from "../pages/Profile";
 import ForgetPassword from "../pages/ForgetPassword";
 import UpdateProfile from "../pages/UpdateProfile";
 import ServicesSection from "../pages/Home/ServicesSection";
+import Spinner from "../pages/Spinner";
 
 export const router = createBrowserRouter([
   {
     path: "/",
-    element: <Home/>,
+    element: <Home />,
     children: [
-        {
-            index: true,
-            loader: () => fetch('/care.json'),            
-            element: <HomePage/>
-        },
-        {
-            path: '/details/:id',
-            loader: () => fetch('/care.json'),
-            element: <PrivateRoutes><ServiceDetails></ServiceDetails></PrivateRoutes>
-        },
-        {
-            path: '/profile',
-            element: <PrivateRoutes><Profile></Profile></PrivateRoutes>
-        },
-        {
-            path: '/profile-update',
-            element: <UpdateProfile></UpdateProfile>
-        },
-        {
-            path: '/login',
-            element: <Login></Login>
-        },
-        {
-            path: '/forget-password',
-            element: <ForgetPassword/>
-        },
-        {
-            path: '/register',
-            element: <Register></Register>
-        },
-        {
-            path: 'services',
-            loader: () => fetch('/care.json'),
-            element: <ServicesSection></ServicesSection>
-        }
-    ]
+      {
+        index: true,
+        loader: () => fetch("/care.json"),
+        element: <HomePage />,
+        hydrateFallbackElement: <Spinner />,
+      },
+      {
+        path: "/details/:id",
+        loader: () => fetch("/care.json"),
+        hydrateFallbackElement: <Spinner />,
+
+        element: (
+          <PrivateRoutes>
+            <ServiceDetails></ServiceDetails>
+          </PrivateRoutes>
+        ),
+      },
+      {
+        path: "/profile",
+        element: (
+          <PrivateRoutes>
+            <Profile></Profile>
+          </PrivateRoutes>
+        ),
+      },
+      {
+        path: "/profile-update",
+        element: <UpdateProfile></UpdateProfile>,
+      },
+      {
+        path: "/login",
+        element: <Login></Login>,
+      },
+      {
+        path: "/forget-password",
+        element: <ForgetPassword />,
+      },
+      {
+        path: "/register",
+        element: <Register></Register>,
+      },
+      {
+        path: "services",
+        loader: () => fetch("/care.json"),
+        hydrateFallbackElement: <Spinner />,
+        element: <ServicesSection></ServicesSection>,
+      },
+    ],
   },
 ]);

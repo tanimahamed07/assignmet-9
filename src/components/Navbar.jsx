@@ -8,8 +8,8 @@ import toast from "react-hot-toast";
 // import Spinner from "../pages/Spinner";
 const Navbar = () => {
   const { user, signoutUserFunc, setUser } = use(AuthContext);
-  console.log(user);
-  console.log(user?.displayName);
+
+
   const handleLogout = () => {
     signoutUserFunc()
       .then(() => {
@@ -20,12 +20,9 @@ const Navbar = () => {
         toast.error(e.message);
       });
   };
-  console.log(user);
+
   return (
     <div className="navbar  w-11/12 mx-auto">
-      <div>
-        <img src="" alt="" />
-      </div>
       <div className="navbar-start">
         <div className="dropdown">
           <div tabIndex={0} role="button" className="btn btn-ghost lg:hidden">

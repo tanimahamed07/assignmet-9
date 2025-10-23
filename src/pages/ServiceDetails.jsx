@@ -1,13 +1,14 @@
 import React from "react";
+import toast from "react-hot-toast";
 import { useLoaderData, useParams } from "react-router";
-import { toast } from "react-toastify";
+
 
 const ServiceDetails = () => {
   const data = useLoaderData();
   const { id } = useParams();
-  console.log(data, id);
+
   const serviceDetails = data.find((d) => d.serviceId == id);
-  console.log(serviceDetails);
+
   const handleSubmit = (e) => {
     e.preventDefault();
     toast.success("Booking Successful");
