@@ -13,9 +13,15 @@ const Register = () => {
     signUpWithEmailAndPassFunc,
     updateProfileFunc,
     setUser,
+    setLoading,
     signInWithGoogle,
+    user
   } = use(AuthContext);
   const navigate = useNavigate();
+  if(user){
+    navigate('/')
+    return;
+  }
   const handleRegister = (e) => {
     e.preventDefault();
     setError("");
@@ -34,10 +40,12 @@ const Register = () => {
     }
     signUpWithEmailAndPassFunc(email, password)
       .then((res) => {
+        setLoading(false)
         const user = res.user;
         updateProfileFunc({ displayName: name, photoURL: photo })
           .then(() => {
             setUser((prev) => {
+              setLoading(false)
               setUser({ ...prev, displayName: name, photoURL: photo });
               navigate("/");
             });
@@ -53,6 +61,7 @@ const Register = () => {
   const handleGoogleLogin = () => {
     signInWithGoogle()
       .then((res) => {
+        setLoading(false)
         setUser(res.user);
         toast.success("Register successful");
         navigate("/");
@@ -107,7 +116,7 @@ const Register = () => {
                     placeholder="Password"
                   />
                   <span
-                    className="absolute top-1/2 left-73 -translate-y-1/2 cursor-pointer text-gray-500"
+                    className="absolute top-1/2 left-52 -translate-y-1/2 cursor-pointer text-gray-500"
                     onClick={() => setToggle(!toggle)}
                   >
                     {toggle ? <FaEyeSlash /> : <FaEye />}

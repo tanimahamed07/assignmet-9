@@ -1,7 +1,23 @@
-import React from "react";
+import React, { useContext } from "react";
+import { AuthContext } from "../provider/AuthContext";
+import toast from "react-hot-toast";
+import { useNavigate } from "react-router";
 
 const ForgetPassword = () => {
+  const {forgetPasswordFunc} = useContext(AuthContext)
+  const navigate = useNavigate()
   const handleReset = (e) => {
+    const email = e.target.email.value
+    e.preventDefault();
+
+    forgetPasswordFunc(email)
+    .then(()=>{
+      navigate('/login')
+      toast.success('Password reset email sent!')
+    })
+    .catch((error => {
+      toast.error(error.message)
+    }))
 
   };
   return (
@@ -13,6 +29,7 @@ const ForgetPassword = () => {
             <label className="label">Email</label>
             <input
               type="email"
+              name='email'
               className="input input-bordered w-full"
               placeholder="Enter your email"
               required

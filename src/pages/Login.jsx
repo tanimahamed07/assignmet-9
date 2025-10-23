@@ -6,13 +6,16 @@ import { FaEye, FaEyeSlash } from "react-icons/fa";
 import toast from "react-hot-toast";
 import "animate.css";
 const Login = () => {
-  const { signInWithEmailAndPasswordFunc, setUser, signInWithGoogle } =
+  const { signInWithEmailAndPasswordFunc, setUser, signInWithGoogle, setLoading , user} =
     use(AuthContext);
   const location = useLocation();
-
   const from = location.state || "/";
   const navigate = useNavigate();
-  const [toggle, setToggle] = useState();
+  if(user){
+    navigate('/')
+    return;
+  }
+const [toggle, setToggle] = useState(false);
   const handleLogin = (e) => {
     e.preventDefault();
     const email = e.target.email.value;
@@ -20,7 +23,7 @@ const Login = () => {
 
     signInWithEmailAndPasswordFunc(email, password)
       .then((res) => {
-
+        setLoading(false)
         setUser(res.user);
         toast.success("Signin successful");
         navigate(from);
@@ -32,6 +35,7 @@ const Login = () => {
   const handleGoogleLogin = () => {
     signInWithGoogle()
       .then((res) => {
+        setLoading(false)
         setUser(res.user);
         toast.success("Signin successful");
         navigate(from);
@@ -65,7 +69,7 @@ const Login = () => {
                     placeholder="Password"
                   />
                   <span
-                    className="absolute top-1/2 left-73 -translate-y-1/2 cursor-pointer text-gray-500"
+                    className="absolute top-1/2 left-55 -translate-y-1/2 cursor-pointer text-gray-500"
                     onClick={() => setToggle(!toggle)}
                   >
                     {toggle ? <FaEyeSlash /> : <FaEye />}
@@ -81,7 +85,7 @@ const Login = () => {
                 <button
                   type="button"
                   onClick={handleGoogleLogin}
-                  class="btn bg-white text-black border-[#e5e5e5]"
+                  className="btn bg-white text-black border-[#e5e5e5]"
                 >
                   <svg
                     aria-label="Google logo"
