@@ -24,7 +24,7 @@ const ForgetPassword = () => {
     <div className="hero bg-base-200 min-h-screen">
       <div className="card bg-base-100 max-w-sm shadow-2xl">
         <div className="card-body">
-          <h2 className="animate__animated animate__bounce text-center text-2xl font-bold">Reset Password</h2>
+          <h2 className="text-center text-2xl font-bold">Reset Password</h2>
           <form onSubmit={handleReset}>
             <label className="label">Email</label>
             <input
