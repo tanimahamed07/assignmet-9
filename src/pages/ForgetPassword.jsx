@@ -1,24 +1,20 @@
 import React, { useContext } from "react";
 import { AuthContext } from "../provider/AuthContext";
 import toast from "react-hot-toast";
-import { useNavigate } from "react-router";
 
 const ForgetPassword = () => {
-  const {forgetPasswordFunc, controlledEmail} = useContext(AuthContext)
-  const navigate = useNavigate()
+  const { forgetPasswordFunc, controlledEmail } = useContext(AuthContext);
   const handleReset = (e) => {
-    const email = e.target.email.value
+    const email = e.target.email.value;
     e.preventDefault();
 
     forgetPasswordFunc(email)
-    .then(()=>{
-      navigate('/login')
-      toast.success('Password reset email sent!')
-    })
-    .catch((error => {
-      toast.error(error.message)
-    }))
-
+      .then(() => {
+        toast.success("Password reset email sent!");
+      })
+      .catch((error) => {
+        toast.error(error.message);
+      });
   };
   return (
     <div className="hero bg-base-200 min-h-screen">
@@ -30,7 +26,7 @@ const ForgetPassword = () => {
             <input
               defaultValue={controlledEmail}
               type="email"
-              name='email'
+              name="email"
               className="input input-bordered w-full"
               placeholder="Enter your email"
               required

@@ -15,11 +15,11 @@ const Register = () => {
     setUser,
     setLoading,
     signInWithGoogle,
-    user
+    user,
   } = use(AuthContext);
   const navigate = useNavigate();
-  if(user){
-    navigate('/')
+  if (user) {
+    navigate("/");
     return;
   }
   const handleRegister = (e) => {
@@ -40,12 +40,12 @@ const Register = () => {
     }
     signUpWithEmailAndPassFunc(email, password)
       .then((res) => {
-        setLoading(false)
+        setLoading(false);
         const user = res.user;
         updateProfileFunc({ displayName: name, photoURL: photo })
           .then(() => {
             setUser((prev) => {
-              setLoading(false)
+              setLoading(false);
               setUser({ ...prev, displayName: name, photoURL: photo });
               navigate("/");
             });
@@ -61,7 +61,7 @@ const Register = () => {
   const handleGoogleLogin = () => {
     signInWithGoogle()
       .then((res) => {
-        setLoading(false)
+        setLoading(false);
         setUser(res.user);
         toast.success("Register successful");
         navigate("/");
@@ -70,7 +70,12 @@ const Register = () => {
   };
   return (
     <div className="hero bg-base-200 min-h-screen ">
-      <div data-aos="flip-up" data-aos-delay="100" data-aos-anchor=".example-selector" className="hero-content flex-col lg:flex-row-reverse">
+      <div
+        data-aos="flip-up"
+        data-aos-delay="100"
+        data-aos-anchor=".example-selector"
+        className="hero-content flex-col lg:flex-row-reverse"
+      >
         <div className="card bg-base-100 max-w-sm shrink-0 shadow-2xl">
           <div className="card-body w-full">
             <h1 className=" text-center text-2xl font-bold">Register</h1>

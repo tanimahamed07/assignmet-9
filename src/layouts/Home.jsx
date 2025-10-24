@@ -13,9 +13,7 @@ const Home = () => {
       <nav className="bg-base-300 shadow-sm">
         <Navbar />
       </nav>
-      <main>
-        {state == 'loading' ? <Spinner/> : <Outlet></Outlet>}
-      </main>
+      <main>{state == "loading" ? <Spinner /> : <Outlet></Outlet>}</main>
       <footer>
         <Footer />
       </footer>
