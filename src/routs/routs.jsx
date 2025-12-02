@@ -11,6 +11,8 @@ import UpdateProfile from "../pages/UpdateProfile";
 import ServicesSection from "../pages/Home/ServicesSection";
 import Spinner from "../pages/Spinner";
 import AboutUs from "../pages/AboutUs/AboutUs";
+import ContactUs from "../pages/ContactUs/ContactUs";
+import FAQ from "../pages/FAQ/FAQ";
 
 export const router = createBrowserRouter([
   {
@@ -28,9 +30,7 @@ export const router = createBrowserRouter([
         loader: () => fetch("/petcare.json"),
         hydrateFallbackElement: <Spinner />,
 
-        element: (
-            <ServiceDetails></ServiceDetails>
-        ),
+        element: <ServiceDetails></ServiceDetails>,
       },
       {
         path: "/profile",
@@ -57,8 +57,16 @@ export const router = createBrowserRouter([
         element: <Register></Register>,
       },
       {
-        path: 'about-us', 
-        element: <AboutUs></AboutUs>
+        path: "about-us",
+        element: <AboutUs></AboutUs>,
+      },
+      {
+        path: "/contact-us",
+        Component: ContactUs,
+      },
+      {
+        path: "/fq",
+        Component: FAQ,
       },
       {
         path: "services",

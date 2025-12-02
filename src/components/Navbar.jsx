@@ -66,6 +66,12 @@ const Navbar = () => {
                 <NavLink to="/about-us">About Us</NavLink>
               </li>
               <li>
+                <NavLink to="/contact-us">Contact Us</NavLink>
+              </li>
+              <li>
+                <NavLink to="/fq">FAQ</NavLink>
+              </li>
+              <li>
                 <NavLink to="/profile">Profile</NavLink>
               </li>
             </ul>
@@ -95,6 +101,12 @@ const Navbar = () => {
             </li>
             <li>
               <NavLink to="/about-us">About Us</NavLink>
+            </li>
+            <li>
+              <NavLink to="/contact-us">Contact Us</NavLink>
+            </li>
+            <li>
+              <NavLink to="/fq">FAQ</NavLink>
             </li>
             <li>
               <NavLink to="/profile" className="px-3 py-1">

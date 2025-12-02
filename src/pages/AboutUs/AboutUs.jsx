@@ -2,7 +2,7 @@ import React from "react";
 
 const AboutUs = () => {
   return (
-    <div className="max-w-6xl mx-auto mt-[100px] p-5 md:p-10">
+    <div className="container mx-auto mt-[100px] p-5 md:p-10">
       {/* Top Section */}
       <div className="text-center space-y-4 mb-10">
         <h1 className="text-4xl text-primary md:text-5xl font-bold">About Us</h1>
