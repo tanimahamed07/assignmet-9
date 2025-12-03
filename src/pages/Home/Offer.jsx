@@ -19,14 +19,20 @@ const Offer = () => {
 
         {/* Right Text */}
         <div className="w-full md:w-1/2 text-center md:text-left">
-          <h2 className="text-3xl sm:text-4xl md:text-5xl font-bold mb-4">
-            Special Pet Grooming Offer!
-          </h2>
-          <p className="text-base sm:text-lg md:text-xl text-gray-500 mb-6">
-            Keep your pets clean and happy! Get 25% off on full grooming
-            services this month.
-          </p>
-          <button className="btn btn-primary btn-lg">Book Grooming</button>
+          <Fade direction="down" triggerOnce>
+            <h2 className="text-3xl sm:text-4xl md:text-5xl font-bold mb-4">
+              Special Pet Grooming Offer!
+            </h2>
+          </Fade>
+          <Fade triggerOnce>
+            <p className="text-base sm:text-lg md:text-xl text-gray-500 mb-6">
+              Keep your pets clean and happy! Get 25% off on full grooming
+              services this month.
+            </p>
+          </Fade>
+          <Fade direction="up" triggerOnce>
+            <button className="btn btn-primary btn-lg">Book Grooming</button>
+          </Fade>
         </div>
       </div>
     </section>

@@ -1,5 +1,6 @@
 import React from "react";
 import toast from "react-hot-toast";
+import { Fade } from "react-awesome-reveal";
 import { useLoaderData, useNavigate, useParams } from "react-router";
 
 const ServiceDetails = () => {
@@ -17,48 +18,59 @@ const ServiceDetails = () => {
     navigate("/");
   };
   return (
-    <div className="container mx-auto px-4 mt-38">
-      <div className="grid grid-cols-1 md:grid-cols-2 gap-8 items-start">
-        {/* LEFT SIDE — IMAGE */}
+    <div className="container mx-auto px-4 mt-36">
+  <div className="grid grid-cols-1 md:grid-cols-2 gap-8 items-start">
+
+    {/* LEFT IMAGE */}
+    <Fade triggerOnce>
+      <div>
+        <img
+          src={serviceDetails.image}
+          alt={serviceDetails.title}
+          className="w-full h-[200px] sm:h-[300px] md:h-[400px] lg:h-[500px] object-cover rounded-xl shadow-lg"
+        />
+      </div>
+    </Fade>
+
+    {/* DETAILS */}
+    <Fade triggerOnce>
+      <div className="space-y-6">
+        <h1 className="text-2xl sm:text-3xl md:text-4xl text-primary font-bold">
+          {serviceDetails.title}
+        </h1>
+
+        <p className="text-base sm:text-lg leading-relaxed">
+          {serviceDetails.fullDesc}
+        </p>
+
+        {/* BENEFITS */}
         <div>
-          <img
-            src={serviceDetails.image}
-            alt={serviceDetails.title}
-            className="w-full h-[200px] sm:h-[300px] md:h-[400px] lg:h-[500px] object-cover rounded-xl shadow-lg"
-          />
-        </div>
+          <h2 className="text-xl font-semibold mb-2">Benefits</h2>
 
-        {/* RIGHT SIDE — DETAILS */}
-        <div className="space-y-6">
-          <h1 className="text-2xl sm:text-3xl md:text-4xl text-primary font-bold">
-            {serviceDetails.title}
-          </h1>
-
-          <p className="text-base sm:text-lg leading-relaxed">
-            {serviceDetails.fullDesc}
-          </p>
-
-          {/* BENEFITS */}
-          <div>
-            <h2 className="text-xl font-semibold mb-2">Benefits</h2>
+          <Fade cascade damping={0.1} triggerOnce>
             <ul className="list-disc ml-6 space-y-1 text-sm sm:text-base">
               {serviceDetails.benefits.map((b, index) => (
                 <li key={index}>{b}</li>
               ))}
             </ul>
-          </div>
+          </Fade>
+        </div>
 
-          {/* TIPS */}
-          <div>
-            <h2 className="text-xl font-semibold mb-2">Tips for Pet Owners</h2>
+        {/* TIPS */}
+        <div>
+          <h2 className="text-xl font-semibold mb-2">Tips for Pet Owners</h2>
+
+          <Fade cascade damping={0.1} triggerOnce>
             <ul className="list-disc ml-6 space-y-1 text-sm sm:text-base">
               {serviceDetails.tips.map((t, index) => (
                 <li key={index}>{t}</li>
               ))}
             </ul>
-          </div>
+          </Fade>
+        </div>
 
-          {/* PRICE + DURATION */}
+        {/* PRICE + DURATION */}
+        <Fade triggerOnce>
           <div className="flex flex-col sm:flex-row flex-wrap gap-4 mt-4">
             <div className="badge badge-primary p-3 text-base sm:text-lg">
               Price: {serviceDetails.price}
@@ -67,19 +79,24 @@ const ServiceDetails = () => {
               Duration: {serviceDetails.duration}
             </div>
           </div>
-        </div>
+        </Fade>
+
       </div>
+    </Fade>
+  </div>
 
-      {/* BOOKING FORM - FULL WIDTH BELOW */}
-      <div className="mt-12">
-        <h2 className="text-2xl sm:text-3xl md:text-4xl text-primary font-bold mb-6 text-center md:text-left">
-          Book This Service
-        </h2>
+  {/* BOOKING FORM */}
+  <Fade triggerOnce>
+    <div className="mt-12">
+      <h2 className="text-2xl sm:text-3xl md:text-4xl text-primary font-bold mb-6 text-center md:text-left">
+        Book This Service
+      </h2>
 
-        <form
-          onSubmit={handleSubmit}
-          className="grid grid-cols-1 md:grid-cols-2 gap-4"
-        >
+      <form
+        onSubmit={handleSubmit}
+        className="grid grid-cols-1 md:grid-cols-2 gap-4"
+      >
+        <Fade cascade damping={0.08} triggerOnce>
           <input
             type="text"
             name="name"
@@ -123,9 +140,12 @@ const ServiceDetails = () => {
           >
             Confirm Booking
           </button>
-        </form>
-      </div>
+        </Fade>
+      </form>
     </div>
+  </Fade>
+</div>
+
   );
 };
 

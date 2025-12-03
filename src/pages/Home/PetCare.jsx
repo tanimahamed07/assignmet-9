@@ -1,4 +1,5 @@
 import React from "react";
+import { Fade } from "react-awesome-reveal";
 import { FaCheckCircle } from "react-icons/fa";
 
 const PetCare = () => {
@@ -25,17 +26,19 @@ const PetCare = () => {
 
           {/* Rules List */}
           <div className="max-w-4xl mx-auto text-left space-y-4">
-            {rules.map((rule, index) => (
-              <div
-                key={index}
-                className="flex items-start space-x-3 bg-white p-4 rounded-lg shadow-sm hover:shadow-md transition-shadow duration-300"
-              >
-                <FaCheckCircle className="text-green-500 mt-1 flex-shrink-0" />
-                <p className="text-base sm:text-lg md:text-xl text-gray-700">
-                  {rule}
-                </p>
-              </div>
-            ))}
+            <Fade cascade damping={0.2} triggerOnce>
+              {rules.map((rule, index) => (
+                <div
+                  key={index}
+                  className="flex items-start space-x-3 bg-white p-4 rounded-lg shadow-sm hover:shadow-md transition-shadow duration-300"
+                >
+                  <FaCheckCircle className="text-green-500 mt-1 flex-shrink-0" />
+                  <p className="text-base sm:text-lg md:text-xl text-gray-700">
+                    {rule}
+                  </p>
+                </div>
+              ))}
+            </Fade>
           </div>
         </div>
       </section>
