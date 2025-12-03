@@ -13,6 +13,7 @@ import Spinner from "../pages/Spinner";
 import AboutUs from "../pages/AboutUs/AboutUs";
 import ContactUs from "../pages/ContactUs/ContactUs";
 import FAQ from "../pages/FAQ/FAQ";
+import ErrorPage from "../pages/Error/ErrorPage";
 
 export const router = createBrowserRouter([
   {
@@ -74,5 +75,10 @@ export const router = createBrowserRouter([
         element: <ServicesSection></ServicesSection>,
       },
     ],
+  },
+  {
+    // This handles all unknown routes
+    path: "*",
+    element: <ErrorPage />,
   },
 ]);

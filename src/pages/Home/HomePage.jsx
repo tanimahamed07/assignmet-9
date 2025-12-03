@@ -1,5 +1,4 @@
 import React from 'react';
-import HeroSlider from './HeroSlider';
 import ServicesSection from './ServicesSection';
 
 import VetsSection from './VetsSection';
@@ -8,7 +7,6 @@ import Banner from './Banner';
 import TopRatedService from './TopRatedService';
 import PetCare from './PetCare';
 import Offer from './Offer';
-
 
 const HomePage = () => {
         
